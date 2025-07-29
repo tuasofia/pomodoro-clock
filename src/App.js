@@ -1,16 +1,12 @@
-import logo from './logo.svg';
+
+import React from 'react';
+import Break from './components/Break'
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          coming soon
-        </p>
-        <p id="break-label">Break</p>
-      </header>
+      <Break />
     </div>
   );
 }
