@@ -1,14 +1,54 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Break from './components/Break';
 import './App.css';
 import Session from './components/Session';
+import TimeLeft from './components/Time-left';
 
 function App() {
+	const [sessionLength, setSessionLength] = useState(60 * 25);
+	const [breakLength, setBreakLength] = useState(300);
+
+	const decrementBreakLengthByOneMinute = () => {
+		const newBreakLength = breakLength - 60;
+		if (newBreakLength < 0) {
+			setBreakLength(0);
+		} else {
+			setBreakLength(newBreakLength);
+		}
+
+	};
+
+	const incrementBreakLengthByOneMinute = () => {
+		setBreakLength(breakLength + 60);
+	};
+
+		const decrementSessionLengthByOneMinute = () => {
+			const newSessionLength = sessionLength - 60;
+			if (newSessionLength < 0) {
+				setSessionLength(0);
+			} else {
+				setSessionLength(newSessionLength);
+			}
+
+		};
+
+		const incrementSessionLengthByOneMinute = () => {
+			setSessionLength(sessionLength + 60);
+		};
   return (
     <div className="App">
-          <Break />
-          <Session/>
+		  <Break
+			  breakLength={breakLength}
+			  decrementBreakLengthByOneMinute={decrementBreakLengthByOneMinute}
+			  incrementBreakLengthByOneMinute={incrementBreakLengthByOneMinute} />
+		  <TimeLeft
+			  sessionLegth={sessionLength} />
+		  <Session
+			  sessionLength={sessionLength}
+			  decrementSessionLengthByOneMinute={decrementSessionLengthByOneMinute}
+			  incrementSessionLengthByOneMinute={incrementSessionLengthByOneMinute}
+		  />
     </div>
   );
 }
